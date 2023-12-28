@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://www.mywaste.ie/wp-content/uploads/2019/11/capture-11.jpg') fixed;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        input[type="submit"],
+        input[type="button"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 8px 0;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        input[type="button"] {
+            background-color: #3498db;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 16px;
+        }
+
+        /* Style for Font Awesome icons */
+        .fa {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Register</h1>
+    <form action="/register" method="post">
+        <label for="fullname"><i class="fa fa-user"></i>Full Name:</label>
+        <input type="text" name="fullname" required>
+
+        <label for="username"><i class="fa fa-user"></i>Username:</label>
+        <input type="text" name="username" required>
+
+        <label for="email"><i class="fa fa-envelope"></i>Email:</label>
+        <input type="email" name="email" required>
+
+        <label for="password"><i class="fa fa-lock"></i>Password:</label>
+        <input type="password" name="password" required>
+
+        <input type="submit" value="Register">
+    </form>
+
+    <div class="login-link">
+        <p>Already have an account? <a href="/login">Login here</a></p>
+    </div>
+</body>
+
+</html>

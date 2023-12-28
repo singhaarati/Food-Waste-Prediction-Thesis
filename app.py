@@ -1,5 +1,5 @@
 # Import necessary libraries
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for, session
 import pandas as pd
 import joblib
 
@@ -11,14 +11,42 @@ model = joblib.load(
 # Initialize Flask application
 app = Flask(__name__)
 
-# Define a route for the home page
+app.secret_key = 'your_secret_key_here'
+
+
 
 
 @app.route('/')
 def home():
-    return render_template('index.html')  # You'll create this HTML file
+    if 'username' in session:
+        return render_template('index.html')
+    else:
+        return redirect(url_for('register'))
 
-# Define a route to handle the form submission
+# Define a route for the registration page
+
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        # Process registration logic here
+
+        # Redirect to the login page after registration
+        return redirect(url_for('login'))
+
+    return render_template('register.html')
+
+# Define a route for the login page
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        # Add your login logic here
+        # For simplicity, I'm using a session variable to store the username
+        session['username'] = request.form['username']
+        return redirect(url_for('home'))
+    return render_template('login.html')  # Create this HTML file
 
 
 # Define a route to handle the form submission
@@ -111,9 +139,9 @@ def get_waste_reduction_ideas(prediction):
     else:
         return "Encourage customers to take leftovers or implement a donation program for excess food."
 
+# Set the secret key for the Flask application
+app.secret_key = 'my_secret_key_123'
 
 # Run the Flask app
 if __name__ == '__main__':
     app.run(debug=True)
-
-
