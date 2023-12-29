@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .result-container {
+            margin-top: 20px;
+            border: 2px solid #ccc;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .waste-class {
+            margin-top: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .suggestion {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .high-waste {
+            color: #FF0000;
+        }
+
+        .low-waste {
+            color: #008000;
+        }
+
+        .debug-info {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Prediction Result</h1>
+    <div class="result-container">
+        <div class="waste-class">Food Waste Class: <span class="{{ prediction.strip() | lower }}-waste">{{
+                prediction.strip() }}</span></div>
+
+        {% if prediction.strip() == 'High' %}
+        <p class="suggestion high-waste">Suggestion: Consider implementing portion control measures to minimize food
+            waste.</p>
+        {% else %}
+        <p class="suggestion low-waste">Suggestion: Encourage customers to take leftovers or implement a donation
+            program for excess food.</p>
+        {% endif %}
+
+        <!-- Debug: Display all variables -->
+        <p class="debug-info">Debug Info: {{ prediction | pprint }}</p>
+    </div>
+</body>
+
+</html>
